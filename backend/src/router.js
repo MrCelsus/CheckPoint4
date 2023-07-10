@@ -33,6 +33,7 @@ router.get("/interiors", interiorsControllers.browse);
 const faqsControllers = require("./controllers/faqsControllers");
 
 router.get("/faqs", faqsControllers.browse);
+router.get("/faqs/:id", faqsControllers.read);
 
 const carsControllers = require("./controllers/carsControllers");
 
