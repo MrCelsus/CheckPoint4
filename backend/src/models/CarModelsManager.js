@@ -21,9 +21,10 @@ class CarModelsManager extends AbstractManager {
   }
 
   insert(brandId, model) {
-    return this.database.query(`insert into ${this.table} (brand_id, model) values (?, ?)`, [
-      brandId, model
-    ]);
+    return this.database.query(
+      `insert into ${this.table} (brand_id, model) values (?, ?)`,
+      [brandId, model]
+    );
   }
 }
 
