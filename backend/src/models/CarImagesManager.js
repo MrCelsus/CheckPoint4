@@ -7,7 +7,7 @@ class CarImagesManager extends AbstractManager {
 
   findAllByCar(carId) {
     return this.database.query(
-      `select ci.car_id, JSON_ARRAYAGG(JSON_OBJECT('id', ci.id, 'src', ci.src)) as images from ${this.table} ci inner join cars c on c.id=ci.car_id where ci.car_id= ?`,
+      `select ci.car_id, JSON_ARRAYAGG(JSON_OBJECT('id', ci.id, 'src', ci.src)) as images from ${this.table} ci inner join cars c on c.id=ci.car_id where ci.car_id= ? group by c.id`,
       [carId]
     );
   }
