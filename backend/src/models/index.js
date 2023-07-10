@@ -39,15 +39,16 @@ const BrandsManager = require("./BrandsManager");
 models.brands = new BrandsManager();
 models.brands.setDatabase(pool);
 
+const FuelsManager = require("./FuelsManager");
+
+models.fuels = new FuelsManager();
+models.fuels.setDatabase(pool);
+
 const CarModelsManager = require("./CarModelsManager");
 
 models.carModels = new CarModelsManager();
 models.carModels.setDatabase(pool);
 
-const FuelsManager = require("./FuelsManager");
-
-models.fuels = new FuelsManager();
-models.fuels.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
