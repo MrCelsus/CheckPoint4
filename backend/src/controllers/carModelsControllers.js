@@ -29,7 +29,23 @@ const read = (req, res) => {
     });
 };
 
+const add = (req, res) => {
+  const carModels = req.body.model;
+  const brandId = parseInt(req.body.brand_id, 10);
+
+  models.carModels
+    .insert(brandId, carModels)
+    .then(([result]) => {
+      res.location(`/models/${result.insertId}`).sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
+  add,
 };
