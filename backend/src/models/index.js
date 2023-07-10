@@ -34,7 +34,7 @@ const ItemManager = require("./ItemManager");
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
-const ItemManager = require("./ItemManager");
+const BrandsManager = require("./BrandsManager");
 
 models.brands = new BrandsManager();
 models.brands.setDatabase(pool);
