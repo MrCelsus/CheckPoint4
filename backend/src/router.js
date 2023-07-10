@@ -26,4 +26,8 @@ const externalsControllers = require("./controllers/externalsControllers");
 
 router.get("/externals", externalsControllers.browse);
 
+const interiorsControllers = require("./controllers/interiorsControllers");
+
+router.get("/interiors", interiorsControllers.browse);
+
 module.exports = router;
