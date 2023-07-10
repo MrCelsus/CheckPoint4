@@ -49,6 +49,11 @@ const FuelsManager = require("./FuelsManager");
 models.fuels = new FuelsManager();
 models.fuels.setDatabase(pool);
 
+const ExternalsManager = require("./ExternalsManager");
+
+models.externals = new ExternalsManager();
+models.externals.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
