@@ -1,8 +1,9 @@
 const models = require("../models");
 
 const browse = (req, res) => {
+  const { brand } = req.query;
   models.carModels
-    .findAll()
+    .findAllByBrand(brand)
     .then(([carModels]) => {
       res.send(carModels);
     })
