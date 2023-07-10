@@ -34,4 +34,8 @@ const faqsControllers = require("./controllers/faqsControllers");
 
 router.get("/faqs", faqsControllers.browse);
 
+const carsControllers = require("./controllers/carsControllers");
+
+router.get("/cars", carsControllers.browse);
+
 module.exports = router;
