@@ -59,6 +59,11 @@ const InteriorsManager = require("./InteriorsManager");
 models.interiors = new InteriorsManager();
 models.interiors.setDatabase(pool);
 
+const FaqsManager = require("./FaqsManager");
+
+models.faqs = new FaqsManager();
+models.faqs.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
