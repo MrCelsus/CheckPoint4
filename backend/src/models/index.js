@@ -34,6 +34,46 @@ const ItemManager = require("./ItemManager");
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
+const BrandsManager = require("./BrandsManager");
+
+models.brands = new BrandsManager();
+models.brands.setDatabase(pool);
+
+const CarModelsManager = require("./CarModelsManager");
+
+models.carModels = new CarModelsManager();
+models.carModels.setDatabase(pool);
+
+const FuelsManager = require("./FuelsManager");
+
+models.fuels = new FuelsManager();
+models.fuels.setDatabase(pool);
+
+const ExternalsManager = require("./ExternalsManager");
+
+models.externals = new ExternalsManager();
+models.externals.setDatabase(pool);
+
+const InteriorsManager = require("./InteriorsManager");
+
+models.interiors = new InteriorsManager();
+models.interiors.setDatabase(pool);
+
+const FaqsManager = require("./FaqsManager");
+
+models.faqs = new FaqsManager();
+models.faqs.setDatabase(pool);
+
+const CarsManager = require("./CarsManager");
+
+models.cars = new CarsManager();
+models.cars.setDatabase(pool);
+
+const CarImagesManager = require("./CarImagesManager");
+
+models.carImages = new CarImagesManager();
+models.carImages.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
