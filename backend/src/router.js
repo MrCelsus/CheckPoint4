@@ -30,4 +30,8 @@ const interiorsControllers = require("./controllers/interiorsControllers");
 
 router.get("/interiors", interiorsControllers.browse);
 
+const faqsControllers = require("./controllers/faqsControllers");
+
+router.get("/faqs", faqsControllers.browse);
+
 module.exports = router;
