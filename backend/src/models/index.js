@@ -64,6 +64,11 @@ const FaqsManager = require("./FaqsManager");
 models.faqs = new FaqsManager();
 models.faqs.setDatabase(pool);
 
+const CarsManager = require("./CarsManager");
+
+models.cars = new CarsManager();
+models.cars.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
