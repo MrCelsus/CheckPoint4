@@ -18,4 +18,8 @@ const carModelsControllers = require("./controllers/carModelsControllers");
 
 router.get("/models", carModelsControllers.browse);
 
+const fuelsControllers = require("./controllers/fuelsControllers");
+
+router.get("/fuels", fuelsControllers.browse);
+
 module.exports = router;
