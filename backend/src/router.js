@@ -14,4 +14,8 @@ const brandsControllers = require("./controllers/brandsControllers");
 
 router.get("/brands", brandsControllers.browse);
 
+const carModelsControllers = require("./controllers/carModelsControllers");
+
+router.get("/models", carModelsControllers.browse);
+
 module.exports = router;
