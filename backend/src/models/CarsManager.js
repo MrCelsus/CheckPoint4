@@ -17,6 +17,33 @@ class CarsManager extends AbstractManager {
       [id]
     );
   }
+
+  insert(
+    modelId,
+    fiscalPower,
+    motorPower,
+    kilometers,
+    description,
+    price,
+    externalId,
+    interiorId,
+    fuelId
+  ) {
+    return this.database.query(
+      `insert into ${this.table} (model_id, fiscal_power, motor_power, kilometers, description, price, external_id, interior_id, fuel_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        modelId,
+        fiscalPower,
+        motorPower,
+        kilometers,
+        description,
+        price,
+        externalId,
+        interiorId,
+        fuelId,
+      ]
+    );
+  }
 }
 
 module.exports = CarsManager;
