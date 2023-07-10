@@ -22,4 +22,8 @@ const fuelsControllers = require("./controllers/fuelsControllers");
 
 router.get("/fuels", fuelsControllers.browse);
 
+const externalsControllers = require("./controllers/externalsControllers");
+
+router.get("/externals", externalsControllers.browse);
+
 module.exports = router;
