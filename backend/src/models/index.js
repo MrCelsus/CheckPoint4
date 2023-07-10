@@ -54,6 +54,11 @@ const ExternalsManager = require("./ExternalsManager");
 models.externals = new ExternalsManager();
 models.externals.setDatabase(pool);
 
+const InteriorsManager = require("./InteriorsManager");
+
+models.interiors = new InteriorsManager();
+models.interiors.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
