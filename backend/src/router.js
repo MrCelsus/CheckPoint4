@@ -37,5 +37,6 @@ router.get("/faqs", faqsControllers.browse);
 const carsControllers = require("./controllers/carsControllers");
 
 router.get("/cars", carsControllers.browse);
+router.get("/cars/:id", carsControllers.read);
 
 module.exports = router;
