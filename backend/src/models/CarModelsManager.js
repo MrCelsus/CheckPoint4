@@ -19,6 +19,12 @@ class CarModelsManager extends AbstractManager {
       [id]
     );
   }
+
+  insert(brandId, model) {
+    return this.database.query(`insert into ${this.table} (brand_id, model) values (?, ?)`, [
+      brandId, model
+    ]);
+  }
 }
 
 module.exports = CarModelsManager;
