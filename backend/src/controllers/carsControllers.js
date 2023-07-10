@@ -67,16 +67,6 @@ const add = async (req, res) => {
     console.error(error);
     res.sendStatus(500);
   }
-
-  // models.item
-  //   .insert(item)
-  //   .then(([result]) => {
-  //     res.location(`/items/${result.insertId}`).sendStatus(201);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.sendStatus(500);
-  //   });
 };
 
 module.exports = {
