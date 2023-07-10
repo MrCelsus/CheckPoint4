@@ -69,6 +69,11 @@ const CarsManager = require("./CarsManager");
 models.cars = new CarsManager();
 models.cars.setDatabase(pool);
 
+const CarImagesManager = require("./CarImagesManager");
+
+models.carImages = new CarImagesManager();
+models.carImages.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
