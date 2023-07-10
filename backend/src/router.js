@@ -13,22 +13,27 @@ const router = express.Router();
 const brandsControllers = require("./controllers/brandsControllers");
 
 router.get("/brands", brandsControllers.browse);
+router.get("/brands/:id", brandsControllers.read);
 
 const carModelsControllers = require("./controllers/carModelsControllers");
 
 router.get("/models", carModelsControllers.browse);
+router.get("/models/:id", carModelsControllers.read);
 
 const fuelsControllers = require("./controllers/fuelsControllers");
 
 router.get("/fuels", fuelsControllers.browse);
+router.get("/fuels/:id", fuelsControllers.read);
 
 const externalsControllers = require("./controllers/externalsControllers");
 
 router.get("/externals", externalsControllers.browse);
+router.get("/externals/:id", externalsControllers.read);
 
 const interiorsControllers = require("./controllers/interiorsControllers");
 
 router.get("/interiors", interiorsControllers.browse);
+router.get("/interiors/:id", interiorsControllers.read);
 
 const faqsControllers = require("./controllers/faqsControllers");
 
