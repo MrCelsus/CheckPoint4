@@ -28,7 +28,22 @@ const read = (req, res) => {
     });
 };
 
+const add = (req, res) => {
+  const { brand, logo } = req.body;
+
+  models.brands
+    .insert(brand, logo)
+    .then(([result]) => {
+      res.location(`/items/${result.insertId}`).sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
+  add,
 };
