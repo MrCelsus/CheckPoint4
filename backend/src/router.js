@@ -51,4 +51,6 @@ const carsControllers = require("./controllers/carsControllers");
 router.get("/cars", carsControllers.browse);
 router.get("/cars/:id", carsControllers.read);
 
+router.post("/cars", carsControllers.add);
+
 module.exports = router;
