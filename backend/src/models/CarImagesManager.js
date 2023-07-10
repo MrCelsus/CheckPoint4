@@ -11,6 +11,13 @@ class CarImagesManager extends AbstractManager {
       [carId]
     );
   }
+
+  insert(image, carId) {
+    return this.database.query(
+      `insert into ${this.table} (src, car_id) values (?, ?)`,
+      [image, carId]
+    );
+  }
 }
 
 module.exports = CarImagesManager;

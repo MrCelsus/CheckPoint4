@@ -15,10 +15,14 @@ const brandsControllers = require("./controllers/brandsControllers");
 router.get("/brands", brandsControllers.browse);
 router.get("/brands/:id", brandsControllers.read);
 
+router.post("/brands", brandsControllers.add);
+
 const carModelsControllers = require("./controllers/carModelsControllers");
 
 router.get("/models", carModelsControllers.browse);
 router.get("/models/:id", carModelsControllers.read);
+
+router.post("/models", carModelsControllers.add);
 
 const fuelsControllers = require("./controllers/fuelsControllers");
 
@@ -40,9 +44,13 @@ const faqsControllers = require("./controllers/faqsControllers");
 router.get("/faqs", faqsControllers.browse);
 router.get("/faqs/:id", faqsControllers.read);
 
+router.post("/faqs", faqsControllers.add);
+
 const carsControllers = require("./controllers/carsControllers");
 
 router.get("/cars", carsControllers.browse);
 router.get("/cars/:id", carsControllers.read);
+
+router.post("/cars", carsControllers.add);
 
 module.exports = router;
