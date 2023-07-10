@@ -44,6 +44,8 @@ const faqsControllers = require("./controllers/faqsControllers");
 router.get("/faqs", faqsControllers.browse);
 router.get("/faqs/:id", faqsControllers.read);
 
+router.post("/faqs", faqsControllers.add);
+
 const carsControllers = require("./controllers/carsControllers");
 
 router.get("/cars", carsControllers.browse);
