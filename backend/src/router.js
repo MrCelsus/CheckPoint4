@@ -24,6 +24,7 @@ router.get("/models", carModelsControllers.browse);
 router.get("/models/:id", carModelsControllers.read);
 
 router.post("/models", carModelsControllers.add);
+router.put("/models/:id", carModelsControllers.edit);
 
 const fuelsControllers = require("./controllers/fuelsControllers");
 
