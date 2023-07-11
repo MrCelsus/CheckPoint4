@@ -11,6 +11,13 @@ class FaqsManager extends AbstractManager {
       [question, answer]
     );
   }
+
+  update(faq, faqId) {
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      faq,
+      faqId,
+    ]);
+  }
 }
 
 module.exports = FaqsManager;
