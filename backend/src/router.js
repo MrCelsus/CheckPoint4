@@ -47,6 +47,7 @@ router.get("/faqs", faqsControllers.browse);
 router.get("/faqs/:id", faqsControllers.read);
 
 router.post("/faqs", faqsControllers.add);
+router.put("/faqs/:id", faqsControllers.edit);
 
 const carsControllers = require("./controllers/carsControllers");
 
