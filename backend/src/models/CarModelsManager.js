@@ -6,7 +6,7 @@ class CarModelsManager extends AbstractManager {
   }
 
   findAllByBrand(brand) {
-    let url = `select m.id, m.model, b.brand from  ${this.table} m inner join brands b on m.brand_id=b.id `;
+    let url = `select m.id, m.model, m.brand_id, b.brand from  ${this.table} m inner join brands b on m.brand_id=b.id `;
     if (brand) {
       url += ` where b.brand = ? `;
     }
@@ -15,7 +15,7 @@ class CarModelsManager extends AbstractManager {
 
   find(id) {
     return this.database.query(
-      `select m.id, m.model, b.brand from  ${this.table} m inner join brands b on m.brand_id=b.id where m.id = ?`,
+      `select m.id, m.model, m.brand_id, b.brand from  ${this.table} m inner join brands b on m.brand_id=b.id where m.id = ?`,
       [id]
     );
   }
@@ -25,6 +25,13 @@ class CarModelsManager extends AbstractManager {
       `insert into ${this.table} (brand_id, model) values (?, ?)`,
       [brandId, model]
     );
+  }
+
+  update(carModel, carModelId) {
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      carModel,
+      carModelId,
+    ]);
   }
 }
 
