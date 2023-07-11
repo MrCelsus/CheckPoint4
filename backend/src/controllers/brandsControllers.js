@@ -42,8 +42,28 @@ const add = (req, res) => {
     });
 };
 
+const edit = (req, res) => {
+  const brand = req.body;
+  const brandId = parseInt(req.params.id, 10);
+
+  models.brands
+    .update(brand, brandId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   add,
+  edit,
 };

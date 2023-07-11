@@ -69,8 +69,29 @@ const add = async (req, res) => {
   }
 };
 
+const edit = (req, res) => {
+  const car = req.body;
+
+  const carId = parseInt(req.params.id, 10);
+
+  models.cars
+    .update(car, carId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   add,
+  edit,
 };
