@@ -55,5 +55,6 @@ router.get("/cars", carsControllers.browse);
 router.get("/cars/:id", carsControllers.read);
 
 router.post("/cars", carsControllers.add);
+router.put("/cars/:id", carsControllers.edit);
 
 module.exports = router;
