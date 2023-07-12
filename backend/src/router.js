@@ -17,6 +17,7 @@ router.get("/brands/:id", brandsControllers.read);
 
 router.post("/brands", brandsControllers.add);
 router.put("/brands/:id", brandsControllers.edit);
+router.delete("/brands/:id", brandsControllers.destroy);
 
 const carModelsControllers = require("./controllers/carModelsControllers");
 
@@ -25,6 +26,7 @@ router.get("/models/:id", carModelsControllers.read);
 
 router.post("/models", carModelsControllers.add);
 router.put("/models/:id", carModelsControllers.edit);
+router.delete("/models/:id", carModelsControllers.destroy);
 
 const fuelsControllers = require("./controllers/fuelsControllers");
 
@@ -48,6 +50,7 @@ router.get("/faqs/:id", faqsControllers.read);
 
 router.post("/faqs", faqsControllers.add);
 router.put("/faqs/:id", faqsControllers.edit);
+router.delete("/faqs/:id", faqsControllers.destroy);
 
 const carsControllers = require("./controllers/carsControllers");
 
@@ -56,5 +59,6 @@ router.get("/cars/:id", carsControllers.read);
 
 router.post("/cars", carsControllers.add);
 router.put("/cars/:id", carsControllers.edit);
+router.delete("/cars/:id", carsControllers.destroy);
 
 module.exports = router;
