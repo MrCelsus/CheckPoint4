@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./Sass/App.scss";
 import AdminLayout from "./pages/Admin/AdminLayout";
+import HomeAdmin from "./pages/Admin/HomeAdmin";
 import UserLayout from "./pages/User/UserLayout";
-import SideBar from "./components/SideBar";
+import CarsAdmin from "./pages/Admin/CarsAdmin";
+import BrandsAdmin from "./pages/Admin/BrandsAdmin";
+import ProfilsAdmin from "./pages/Admin/ProfilsAdmin";
 
 function App() {
   return (
@@ -13,7 +16,10 @@ function App() {
           <Route path="/" element={<UserLayout />} />
           {/* Route Admin */}
           <Route path="/admin/" element={<AdminLayout />}>
-            <Route path="" element={<SideBar />} />
+            <Route path="" element={<HomeAdmin />} />
+            <Route path="cars" element={<CarsAdmin />} />
+            <Route path="brands" element={<BrandsAdmin />} />
+            <Route path="profils" element={<ProfilsAdmin />} />
           </Route>
         </Routes>
       </Router>
