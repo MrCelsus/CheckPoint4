@@ -143,6 +143,15 @@ function CarsAdmin() {
   console.info(cars);
   return (
     <main>
+      <h1>Liste des voitures </h1>
+      <select name="cars" id="cars">
+        <option value="">Rafraîchir</option>
+        {cars.map((oneCar) => (
+          <option value={oneCar.id} key={oneCar.id}>
+            {oneCar.brand} {oneCar.model} {oneCar.price}€
+          </option>
+        ))}
+      </select>
       <form onSubmit={(event) => postCar(event)}>
         <select
           name="brandId"
