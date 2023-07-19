@@ -40,9 +40,7 @@ const deleteData = (url) => {
   return fetch(`${import.meta.env.VITE_BACKEND_URL}${url}`, {
     method: "DELETE",
     // credentials: "include",
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+  }).catch((err) => console.error(err));
 };
 
 const connexion = {
