@@ -8,7 +8,7 @@ class CarModelsManager extends AbstractManager {
   findAllByBrand(brand) {
     let url = `select m.id, m.model, m.brand_id, b.brand from  ${this.table} m inner join brands b on m.brand_id=b.id `;
     if (brand) {
-      url += ` where b.brand = ? `;
+      url += ` where m.brand_id = ? `;
     }
     return this.database.query(url, [brand]);
   }
