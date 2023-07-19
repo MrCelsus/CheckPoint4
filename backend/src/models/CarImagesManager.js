@@ -18,6 +18,13 @@ class CarImagesManager extends AbstractManager {
       [image, carId]
     );
   }
+
+  update(image) {
+    return this.database.query(
+      `update ${this.table} set src = ? where id = ?`,
+      [image.src, image.image_id]
+    );
+  }
 }
 
 module.exports = CarImagesManager;
