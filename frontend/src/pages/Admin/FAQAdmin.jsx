@@ -56,13 +56,25 @@ function FAQAdmin() {
       console.error(error);
     }
   };
+
+  const updateFaqState = (id) => {
+    if (id === "") {
+      setFaq(faqModel);
+    } else {
+      setFaq(faqs.find((theFaq) => theFaq.id === +id));
+    }
+  };
+
   useEffect(() => {
     getFaqs();
   }, []);
   return (
     <main>
       <h1>Liste des Questions/Réponses</h1>
-      <select name="faqs" id="">
+      <select
+        name="faqs"
+        onChange={(event) => updateFaqState(event.target.value)}
+      >
         <option value="">Choisir une question</option>
         {faqs.map((fq) => (
           <option value={fq.id} key={fq.id}>
@@ -73,9 +85,11 @@ function FAQAdmin() {
       <form onSubmit={(event) => postFaq(event)}>
         <label htmlFor="question">
           Question :
-          <input
+          <textarea
             type="text"
             name="question"
+            cols={40}
+            rows={5}
             value={faq.question}
             onChange={(event) => handleFaq(event)}
             minLength={20}
@@ -84,9 +98,11 @@ function FAQAdmin() {
         </label>
         <label htmlFor="answer">
           Réponse :
-          <input
+          <textarea
             type="text"
             name="answer"
+            cols={40}
+            rows={20}
             value={faq.answer}
             onChange={(event) => handleFaq(event)}
             minLength={20}
