@@ -98,6 +98,16 @@ function CarsAdmin() {
     }
   };
 
+  const deleteCar = async (event) => {
+    event.preventDefault();
+    try {
+      await connexion.delete(`/cars/${car.id}`);
+      setCar(carModel);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getBrands();
     getModels();
@@ -276,7 +286,9 @@ function CarsAdmin() {
       </form>
       {car.id && (
         <>
-          <button type="button">Supprimer</button>
+          <button type="button" onClick={(e) => deleteCar(e)}>
+            Supprimer
+          </button>
           <button type="button">Modifier</button>
         </>
       )}
