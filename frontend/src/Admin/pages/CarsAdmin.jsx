@@ -3,6 +3,7 @@ import connexion from "../../services/connexion";
 
 function CarsAdmin() {
   const [brands, setBrands] = useState([]);
+  const [models, setModels] = useState([]);
   const getBrands = async () => {
     try {
       const brandsData = await connexion.get("/brands");
@@ -13,18 +14,30 @@ function CarsAdmin() {
       console.error(error);
     }
   };
+  const getModels = async () => {
+    try {
+      const modelsData = await connexion.get(`/models`);
+      if (modelsData) {
+        setModels(modelsData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     getBrands();
+    getModels();
   }, []);
-  console.info(brands);
+  console.info(models);
   return (
     <main>
       <form action="">
-        <select name="brand" id="brand">
-          <option value="">oui1</option>
-          <option value="">oui2</option>
-          <option value="">oui3</option>
+        <select name="brandId" id="brand">
+          <option value="">Marque de la voiture</option>
+          {brands.map((brand) => (
+            <option value={brand.id}>{brand.brand} </option>
+          ))}
         </select>
         <select name="modelId" id="modelId">
           <option value="">Oui</option>
