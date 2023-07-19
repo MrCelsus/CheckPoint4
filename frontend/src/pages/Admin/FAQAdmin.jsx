@@ -35,6 +35,27 @@ function FAQAdmin() {
       console.error(error);
     }
   };
+
+  const deleteFaq = async (event) => {
+    event.preventDefault();
+    try {
+      await connexion.delete(`/faqs/${faq.id}`);
+      setFaq(faqModel);
+      getFaqs();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateFaq = async (event) => {
+    event.preventDefault();
+    try {
+      await connexion.put(`/faqs/${faq.id}`, faq);
+      getFaqs();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     getFaqs();
   }, []);
@@ -74,6 +95,16 @@ function FAQAdmin() {
         </label>
         {!faq.id && <button type="submit">Ajouter</button>}
       </form>
+      {faq.id && (
+        <>
+          <button type="button" onClick={(e) => deleteFaq(e)}>
+            Supprimer
+          </button>
+          <button type="button" onClick={(e) => updateFaq(e)}>
+            Modifier
+          </button>
+        </>
+      )}
     </main>
   );
 }
