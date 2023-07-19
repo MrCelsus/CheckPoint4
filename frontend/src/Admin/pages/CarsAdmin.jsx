@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import connexion from "../../services/connexion";
 
+const carModel = {
+  id: null,
+  modelId: "",
+  fuelId: "",
+  fiscalPower: "",
+  motorPower: "",
+  kilometers: "",
+  externalId: "",
+  interiorId: "",
+  description: "",
+  price: "",
+  image1: "",
+  image2: "",
+  image3: "",
+};
+
 function CarsAdmin() {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [fuels, setFuels] = useState([]);
   const [externals, setExternals] = useState([]);
   const [interiors, setInteriors] = useState([]);
+
+  const [car, setCar] = useState(carModel);
   const getBrands = async () => {
     try {
       const brandsData = await connexion.get("/brands");
@@ -19,15 +37,17 @@ function CarsAdmin() {
   };
 
   const getModels = async (event) => {
-    try {
-      const modelsData = await connexion.get(
-        `/models?brand=${event.target.value}`
-      );
-      if (modelsData) {
-        setModels(modelsData);
+    if (event) {
+      try {
+        const modelsData = await connexion.get(
+          `/models?brand=${event.target.value}`
+        );
+        if (modelsData) {
+          setModels(modelsData);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -64,6 +84,15 @@ function CarsAdmin() {
     }
   };
 
+  const handleCar = (event) => {
+    setCar({ ...car, [event.target.name]: event.target.value });
+  };
+
+  const postCar = (event) => {
+    event.preventDefault();
+    console.info(car);
+  };
+
   useEffect(() => {
     getBrands();
     getModels();
@@ -73,7 +102,7 @@ function CarsAdmin() {
   }, []);
   return (
     <main>
-      <form action="">
+      <form onSubmit={(event) => postCar(event)}>
         <select
           name="brandId"
           id="brand"
@@ -84,10 +113,15 @@ function CarsAdmin() {
             <option value={brand.id}>{brand.brand} </option>
           ))}
         </select>
-        <select name="modelId" id="modelId">
+        <select
+          name="modelId"
+          id="modelId"
+          onChange={(e) => handleCar(e)}
+          value={car.modelId}
+        >
           <option value="">Modèle de la voiture</option>
           {models.map((model) => (
-            <option value="modelId" key={model.id}>
+            <option value={model.id} key={model.id}>
               {model.model}
             </option>
           ))}
@@ -101,6 +135,8 @@ function CarsAdmin() {
             min={0}
             max={6}
             required
+            onChange={(e) => handleCar(e)}
+            value={car.fiscalPower}
           />
           CV
         </label>
@@ -112,14 +148,21 @@ function CarsAdmin() {
             id="motorPower"
             min={0}
             max={110}
+            onChange={(e) => handleCar(e)}
+            value={car.motorPower}
             required
           />
           CH
         </label>
-        <select name="fuelId" id="fuelId">
+        <select
+          name="fuelId"
+          id="fuelId"
+          onChange={(e) => handleCar(e)}
+          value={car.fuelId}
+        >
           <option value="">Type de carburant</option>
           {fuels.map((fuel) => (
-            <option value="fuelId" key={fuel.id}>
+            <option value={fuel.id} key={fuel.id}>
               {fuel.label}
             </option>
           ))}
@@ -131,13 +174,24 @@ function CarsAdmin() {
             name="kilometers"
             id="kilometers"
             min={0}
+            onChange={(e) => handleCar(e)}
+            value={car.kilometers}
             required
           />
           Km
         </label>
         <label htmlFor="price">
           Le prix :
-          <input type="number" name="price" id="price" min={0} required /> €
+          <input
+            type="number"
+            name="price"
+            id="price"
+            min={0}
+            required
+            onChange={(e) => handleCar(e)}
+            value={car.price}
+          />{" "}
+          €
         </label>
         <label htmlFor="description">
           Description :
@@ -149,37 +203,71 @@ function CarsAdmin() {
             autoComplete="off"
             minLength={50}
             maxLength={350}
+            onChange={(e) => handleCar(e)}
+            value={car.description}
             required
           />
         </label>
-        <select name="externalId" id="externalId">
+        <select
+          name="externalId"
+          id="externalId"
+          onChange={(e) => handleCar(e)}
+          value={car.externalId}
+        >
           <option value="">Etat extérieur de la voiture </option>
           {externals.map((ext) => (
-            <option value="extId" key={ext.id}>
+            <option value={ext.id} key={ext.id}>
               {ext.label}
             </option>
           ))}
         </select>
-        <select name="interiorId" id="interiorId">
+        <select
+          name="interiorId"
+          id="interiorId"
+          onChange={(e) => handleCar(e)}
+          value={car.interiorId}
+        >
           <option value="">Etat intérieur de la voiture</option>
           {interiors.map((int) => (
-            <option value="interiorId" key={int.id}>
-              {int.label}{" "}
+            <option value={int.id} key={int.id}>
+              {int.label}
             </option>
           ))}
         </select>
         <label htmlFor="image1">
           1ère Image :
-          <input type="text" name="image1" id="image1" required />
+          <input
+            type="text"
+            name="image1"
+            id="image1"
+            required
+            onChange={(e) => handleCar(e)}
+            value={car.image1}
+          />
         </label>
         <label htmlFor="image2">
           2ème Image :
-          <input type="text" name="image2" id="image2" required />
+          <input
+            type="text"
+            name="image2"
+            id="image2"
+            required
+            onChange={(e) => handleCar(e)}
+            value={car.image2}
+          />
         </label>
         <label htmlFor="image3">
           3ème Image :
-          <input type="text" name="image3" id="image3" required />
+          <input
+            type="text"
+            name="image3"
+            id="image3"
+            required
+            onChange={(e) => handleCar(e)}
+            value={car.image3}
+          />
         </label>
+        {!car.id && <button type="submit">Ajouter</button>}
       </form>
     </main>
   );
