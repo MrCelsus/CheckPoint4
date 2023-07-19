@@ -76,7 +76,7 @@ function CarsAdmin() {
             min={0}
             max={6}
             required
-          />{" "}
+          />
           CV
         </label>
         <label htmlFor="motorPower">
@@ -88,13 +88,16 @@ function CarsAdmin() {
             min={0}
             max={110}
             required
-          />{" "}
+          />
           CH
         </label>
         <select name="fuelId" id="fuelId">
-          <option value="">titi</option>
-          <option value="">tutu</option>
-          <option value="">ouioui</option>
+          <option value="">Type de carburant</option>
+          {fuels.map((fuel) => (
+            <option value="fuelId" key={fuel.id}>
+              {fuel.label}
+            </option>
+          ))}
         </select>
         <label htmlFor="kilometers">
           Kilométrage de la voiture :
@@ -104,7 +107,7 @@ function CarsAdmin() {
             id="kilometers"
             min={0}
             required
-          />{" "}
+          />
           Km
         </label>
         <label htmlFor="price">
