@@ -108,8 +108,14 @@ function CarsAdmin() {
     }
   };
 
-  const handleCar = (event) => {
-    setCar({ ...car, [event.target.name]: event.target.value });
+  const handleCar = (event, index) => {
+    if (event.target.name.includes("image")) {
+      const provCars = { ...car };
+      provCars.images[index].src = event.target.value;
+      setCar(provCars);
+    } else {
+      setCar({ ...car, [event.target.name]: event.target.value });
+    }
   };
 
   const postCar = async (event) => {
@@ -160,6 +166,7 @@ function CarsAdmin() {
     getExternals();
     getInteriors();
   }, [car.brand_id]);
+
   return (
     <main>
       <h1>Liste des voitures </h1>
@@ -178,9 +185,9 @@ function CarsAdmin() {
       <form onSubmit={(event) => postCar(event)}>
         <select
           name="brand_id"
-          id="brand"
           onChange={(event) => handleCar(event)}
           value={car.brand_id}
+          required
         >
           <option value="">Marque de la voiture</option>
           {brands.map((brand) => (
@@ -189,9 +196,9 @@ function CarsAdmin() {
         </select>
         <select
           name="model_id"
-          id="modelId"
           onChange={(e) => handleCar(e)}
           value={car.model_id}
+          required
         >
           <option value="">Modèle de la voiture</option>
           {models.map((model) => (
@@ -204,8 +211,7 @@ function CarsAdmin() {
           Puissance fiscale du véhicule :
           <input
             type="number"
-            name="fiscalPower"
-            id="fiscalPower"
+            name="fiscal_power"
             min={0}
             max={6}
             required
@@ -230,9 +236,9 @@ function CarsAdmin() {
         </label>
         <select
           name="fuel_id"
-          id="fuelId"
           onChange={(e) => handleCar(e)}
           value={car.fuel_id}
+          required
         >
           <option value="">Type de carburant</option>
           {fuels.map((fuel) => (
@@ -314,10 +320,9 @@ function CarsAdmin() {
           1ère Image :
           <input
             type="text"
-            name="images[0].src"
-            id="src1"
+            name="image0"
             required
-            onChange={(e) => handleCar(e)}
+            onChange={(e) => handleCar(e, 0)}
             value={car.images[0].src}
           />
         </label>
@@ -325,10 +330,9 @@ function CarsAdmin() {
           2ème Image :
           <input
             type="text"
-            name="images[1].src"
-            id="src2"
+            name="image1"
             required
-            onChange={(e) => handleCar(e)}
+            onChange={(e) => handleCar(e, 1)}
             value={car.images[1].src}
           />
         </label>
@@ -336,10 +340,9 @@ function CarsAdmin() {
           3ème Image :
           <input
             type="text"
-            name="images[2].src"
-            id="src3"
+            name="image2"
             required
-            onChange={(e) => handleCar(e)}
+            onChange={(e) => handleCar(e, 2)}
             value={car.images[2].src}
           />
         </label>
