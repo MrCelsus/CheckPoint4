@@ -38,7 +38,7 @@ const add = (req, res) => {
       res
         .location(`/faqs/${faq.insertId}`)
         .status(201)
-        .json({ ...faq, id: faq.insertId });
+        .json({ ...faqs, id: faq.insertId });
     })
     .catch((err) => {
       console.error(err);
