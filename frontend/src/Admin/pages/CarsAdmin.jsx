@@ -162,9 +162,12 @@ function CarsAdmin() {
           ))}
         </select>
         <select name="interiorId" id="interiorId">
-          <option value="">ffffff</option>
-          <option value="">sssssssss</option>
-          <option value="">hhhhh</option>
+          <option value="">Etat intérieur de la voiture</option>
+          {interiors.map((int) => (
+            <option value="interiorId" key={int.id}>
+              {int.label}{" "}
+            </option>
+          ))}
         </select>
         <label htmlFor="image1">
           1ère Image :
