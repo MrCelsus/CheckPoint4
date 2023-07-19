@@ -66,7 +66,7 @@ const add = async (req, res) => {
     res.location(`/images/${image1[0].insertId}`);
     res.location(`/images/${image2[0].insertId}`);
     res.location(`/images/${image3[0].insertId}`);
-    res.status(201).json({ ...car, id: car[0].insertId });
+    res.status(201).json({ ...cars, id: car[0].insertId });
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
