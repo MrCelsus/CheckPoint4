@@ -71,7 +71,6 @@ function CarsAdmin() {
     getExternals();
     getInteriors();
   }, []);
-  console.info(interiors);
   return (
     <main>
       <form action="">
@@ -171,15 +170,15 @@ function CarsAdmin() {
         </select>
         <label htmlFor="image1">
           1ère Image :
-          <input type="text" name="image1" id="image1" />
+          <input type="text" name="image1" id="image1" required />
         </label>
         <label htmlFor="image2">
           2ème Image :
-          <input type="text" name="image2" id="image2" />
+          <input type="text" name="image2" id="image2" required />
         </label>
         <label htmlFor="image3">
           3ème Image :
-          <input type="text" name="image3" id="image3" />
+          <input type="text" name="image3" id="image3" required />
         </label>
       </form>
     </main>
