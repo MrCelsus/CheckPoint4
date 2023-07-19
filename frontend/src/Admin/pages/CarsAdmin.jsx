@@ -12,9 +12,9 @@ const carModel = {
   interiorId: "",
   description: "",
   price: "",
-  image1: "",
-  image2: "",
-  image3: "",
+  src1: "",
+  src2: "",
+  src3: "",
 };
 
 function CarsAdmin() {
@@ -88,9 +88,14 @@ function CarsAdmin() {
     setCar({ ...car, [event.target.name]: event.target.value });
   };
 
-  const postCar = (event) => {
+  const postCar = async (event) => {
     event.preventDefault();
-    console.info(car);
+    try {
+      const carPost = await connexion.post("/cars", car);
+      setCar(carPost.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -234,41 +239,47 @@ function CarsAdmin() {
             </option>
           ))}
         </select>
-        <label htmlFor="image1">
+        <label htmlFor="src1">
           1ère Image :
           <input
             type="text"
-            name="image1"
-            id="image1"
+            name="src1"
+            id="src1"
             required
             onChange={(e) => handleCar(e)}
-            value={car.image1}
+            value={car.src1}
           />
         </label>
-        <label htmlFor="image2">
+        <label htmlFor="src2">
           2ème Image :
           <input
             type="text"
-            name="image2"
-            id="image2"
+            name="src2"
+            id="src2"
             required
             onChange={(e) => handleCar(e)}
-            value={car.image2}
+            value={car.src2}
           />
         </label>
-        <label htmlFor="image3">
+        <label htmlFor="src3">
           3ème Image :
           <input
             type="text"
-            name="image3"
-            id="image3"
+            name="src3"
+            id="src3"
             required
             onChange={(e) => handleCar(e)}
-            value={car.image3}
+            value={car.src3}
           />
         </label>
         {!car.id && <button type="submit">Ajouter</button>}
       </form>
+      {car.id && (
+        <>
+          <button type="button">Supprimer</button>
+          <button type="button">Modifier</button>
+        </>
+      )}
     </main>
   );
 }
