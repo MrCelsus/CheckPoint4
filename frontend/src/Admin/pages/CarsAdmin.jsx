@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import connexion from "../../services/connexion";
 
 function CarsAdmin() {
+  const [brands, setBrands] = useState([]);
+  const getBrands = async () => {
+    try {
+      const brandsData = await connexion.get("/brands");
+      if (brandsData) {
+        setBrands(brandsData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getBrands();
+  }, []);
+  console.info(brands);
   return (
     <main>
       <form action="">
