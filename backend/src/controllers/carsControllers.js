@@ -40,7 +40,9 @@ const add = async (req, res) => {
     externalId,
     interiorId,
     fuelId,
-    images,
+    src1,
+    src2,
+    src3,
   } = cars;
   try {
     const car = await models.cars.insert(
@@ -53,16 +55,18 @@ const add = async (req, res) => {
       externalId,
       interiorId,
       fuelId,
-      images
+      src1,
+      src2,
+      src3
     );
-    const image1 = await models.carImages.insert(images.src1, car[0].insertId);
-    const image2 = await models.carImages.insert(images.src2, car[0].insertId);
-    const image3 = await models.carImages.insert(images.src3, car[0].insertId);
+    const image1 = await models.carImages.insert(src1, car[0].insertId);
+    const image2 = await models.carImages.insert(src2, car[0].insertId);
+    const image3 = await models.carImages.insert(src3, car[0].insertId);
     res.location(`/cars/${car[0].insertId}`);
     res.location(`/images/${image1[0].insertId}`);
     res.location(`/images/${image2[0].insertId}`);
     res.location(`/images/${image3[0].insertId}`);
-    res.sendStatus(201);
+    res.status(201).json({ ...car, id: car[0].insertId });
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
