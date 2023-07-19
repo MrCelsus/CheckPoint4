@@ -4,6 +4,7 @@ import connexion from "../../services/connexion";
 function CarsAdmin() {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
+  const [fuels, setFuels] = useState([]);
   const getBrands = async () => {
     try {
       const brandsData = await connexion.get("/brands");
@@ -28,10 +29,23 @@ function CarsAdmin() {
     }
   };
 
+  const getFuels = async () => {
+    try {
+      const fuelsData = await connexion.get("/fuels");
+      if (fuelsData) {
+        setFuels(fuelsData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getBrands();
     getModels();
+    getFuels();
   }, []);
+  console.info(fuels);
   return (
     <main>
       <form action="">
