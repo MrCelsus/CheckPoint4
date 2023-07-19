@@ -18,29 +18,19 @@ class CarsManager extends AbstractManager {
     );
   }
 
-  insert(
-    modelId,
-    fiscalPower,
-    motorPower,
-    kilometers,
-    description,
-    price,
-    externalId,
-    interiorId,
-    fuelId
-  ) {
+  insert(cars) {
     return this.database.query(
       `insert into ${this.table} (model_id, fiscal_power, motor_power, kilometers, description, price, external_id, interior_id, fuel_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        modelId,
-        fiscalPower,
-        motorPower,
-        kilometers,
-        description,
-        price,
-        externalId,
-        interiorId,
-        fuelId,
+        cars.model_id,
+        cars.fiscal_power,
+        cars.motor_power,
+        cars.kilometers,
+        cars.description,
+        cars.price,
+        cars.external_id,
+        cars.interior_id,
+        cars.fuel_id,
       ]
     );
   }
@@ -49,14 +39,14 @@ class CarsManager extends AbstractManager {
     return this.database.query(
       `update ${this.table} set model_id = ?, fiscal_power= ?, motor_power = ?, kilometers = ? ,description = ?, external_id = ?, interior_id = ?, fuel_id = ? where id = ?`,
       [
-        car.modelId,
-        car.fiscalPower,
-        car.motorPower,
+        car.model_id,
+        car.fiscal_power,
+        car.motor_power,
         car.kilometers,
         car.description,
-        car.externalId,
-        car.interiorId,
-        car.fuelId,
+        car.external_id,
+        car.interior_id,
+        car.fuel_id,
         carId,
       ]
     );
