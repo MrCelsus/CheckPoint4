@@ -23,8 +23,20 @@ function CarsAdmin() {
   const [fuels, setFuels] = useState([]);
   const [externals, setExternals] = useState([]);
   const [interiors, setInteriors] = useState([]);
-
+  const [cars, setCars] = useState([]);
   const [car, setCar] = useState(carModel);
+
+  const getCars = async () => {
+    try {
+      const carsData = await connexion.get("/cars");
+      if (carsData) {
+        setCars(carsData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getBrands = async () => {
     try {
       const brandsData = await connexion.get("/brands");
@@ -93,6 +105,7 @@ function CarsAdmin() {
     try {
       const carPost = await connexion.post("/cars", car);
       setCar(carPost.data);
+      getCars();
     } catch (error) {
       console.error(error);
     }
@@ -103,6 +116,7 @@ function CarsAdmin() {
     try {
       await connexion.delete(`/cars/${car.id}`);
       setCar(carModel);
+      getCars();
     } catch (error) {
       console.error(error);
     }
@@ -112,18 +126,21 @@ function CarsAdmin() {
     event.preventDefault();
     try {
       await connexion.put(`/cars/${car.id}`, car);
+      getCars();
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
+    getCars();
     getBrands();
     getModels();
     getFuels();
     getExternals();
     getInteriors();
   }, []);
+  console.info(cars);
   return (
     <main>
       <form onSubmit={(event) => postCar(event)}>
@@ -214,7 +231,7 @@ function CarsAdmin() {
             required
             onChange={(e) => handleCar(e)}
             value={car.price}
-          />{" "}
+          />
           €
         </label>
         <label htmlFor="description">
