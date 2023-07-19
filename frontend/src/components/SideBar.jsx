@@ -8,6 +8,7 @@ function SideBar() {
       <Link to="/admin/cars"> Liste des voitures</Link>
       <Link to="/admin/brands"> Liste des marques</Link>
       <Link to="/admin/profils">Liste des utilisateurs</Link>
+      <Link to="/admin/faq">Liste des questions</Link>
     </aside>
   );
 }
