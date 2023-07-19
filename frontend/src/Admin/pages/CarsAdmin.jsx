@@ -14,9 +14,12 @@ function CarsAdmin() {
       console.error(error);
     }
   };
-  const getModels = async () => {
+
+  const getModels = async (event) => {
     try {
-      const modelsData = await connexion.get(`/models`);
+      const modelsData = await connexion.get(
+        `/models?brand=${event.target.value}`
+      );
       if (modelsData) {
         setModels(modelsData);
       }
@@ -29,20 +32,26 @@ function CarsAdmin() {
     getBrands();
     getModels();
   }, []);
-  console.info(models);
   return (
     <main>
       <form action="">
-        <select name="brandId" id="brand">
+        <select
+          name="brandId"
+          id="brand"
+          onChange={(event) => getModels(event)}
+        >
           <option value="">Marque de la voiture</option>
           {brands.map((brand) => (
             <option value={brand.id}>{brand.brand} </option>
           ))}
         </select>
         <select name="modelId" id="modelId">
-          <option value="">Oui</option>
-          <option value="">NNon</option>
-          <option value="">TOTO</option>
+          <option value="">Modèle de la voiture</option>
+          {models.map((model) => (
+            <option value="modelId" key={model.id}>
+              {model.model}
+            </option>
+          ))}
         </select>
         <label htmlFor="fiscalPower">
           Puissance fiscale du véhicule :
