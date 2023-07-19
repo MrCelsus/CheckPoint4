@@ -141,9 +141,12 @@ function CarsAdmin() {
           />
         </label>
         <select name="externalId" id="externalId">
-          <option value="">ibsdqisd</option>
-          <option value="">fgbqq</option>
-          <option value="">nsqnq</option>
+          <option value="">Etat extérieur de la voiture </option>
+          {externals.map((ext) => (
+            <option value="extId" key={ext.id}>
+              {ext.label}
+            </option>
+          ))}
         </select>
         <select name="interiorId" id="interiorId">
           <option value="">ffffff</option>
