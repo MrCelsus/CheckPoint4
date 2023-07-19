@@ -5,6 +5,7 @@ function CarsAdmin() {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [fuels, setFuels] = useState([]);
+  const [externals, setExternals] = useState([]);
   const getBrands = async () => {
     try {
       const brandsData = await connexion.get("/brands");
@@ -40,12 +41,24 @@ function CarsAdmin() {
     }
   };
 
+  const getExternals = async () => {
+    try {
+      const externalsData = await connexion.get("/externals");
+      if (externalsData) {
+        setExternals(externalsData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getBrands();
     getModels();
     getFuels();
+    getExternals();
   }, []);
-  console.info(fuels);
+  console.info(externals);
   return (
     <main>
       <form action="">
