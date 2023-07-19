@@ -6,6 +6,7 @@ import UserLayout from "./pages/User/UserLayout";
 import CarsAdmin from "./pages/Admin/CarsAdmin";
 import BrandsAdmin from "./pages/Admin/BrandsAdmin";
 import ProfilsAdmin from "./pages/Admin/ProfilsAdmin";
+import FAQAdmin from "./pages/Admin/FAQAdmin";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="cars" element={<CarsAdmin />} />
             <Route path="brands" element={<BrandsAdmin />} />
             <Route path="profils" element={<ProfilsAdmin />} />
+            <Route path="faq" element={<FAQAdmin />} />
           </Route>
         </Routes>
       </Router>
