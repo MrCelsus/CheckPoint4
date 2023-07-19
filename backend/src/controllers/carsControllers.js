@@ -80,8 +80,8 @@ const edit = (req, res) => {
 
   models.cars
     .update(car, carId)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
+    .then(([cars]) => {
+      if (cars.affectedRows === 0) {
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
