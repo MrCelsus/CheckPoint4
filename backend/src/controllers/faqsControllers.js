@@ -29,12 +29,16 @@ const read = (req, res) => {
 };
 
 const add = (req, res) => {
-  const { question, answer } = req.body;
+  const faqs = req.body;
+  const { question, answer } = faqs;
 
   models.faqs
     .insert(question, answer)
-    .then(([result]) => {
-      res.location(`/faqs/${result.insertId}`).sendStatus(201);
+    .then(([faq]) => {
+      res
+        .location(`/faqs/${faq.insertId}`)
+        .status(201)
+        .json({ ...faq, id: faq.insertId });
     })
     .catch((err) => {
       console.error(err);
