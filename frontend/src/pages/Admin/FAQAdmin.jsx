@@ -24,6 +24,17 @@ function FAQAdmin() {
   const handleFaq = (e) => {
     setFaq({ ...faq, [e.target.name]: e.target.value });
   };
+
+  const postFaq = async (event) => {
+    event.preventDefault();
+    try {
+      const faqPost = await connexion.post("/faqs", faq);
+      setFaq(faqPost.data);
+      getFaqs();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     getFaqs();
   }, []);
@@ -38,8 +49,8 @@ function FAQAdmin() {
           </option>
         ))}
       </select>
-      <form action="">
-        <label htmlFor="">
+      <form onSubmit={(event) => postFaq(event)}>
+        <label htmlFor="question">
           Question :
           <input
             type="text"
@@ -50,7 +61,7 @@ function FAQAdmin() {
             required
           />
         </label>
-        <label htmlFor="">
+        <label htmlFor="answer">
           Réponse :
           <input
             type="text"
@@ -61,6 +72,7 @@ function FAQAdmin() {
             required
           />
         </label>
+        {!faq.id && <button type="submit">Ajouter</button>}
       </form>
     </main>
   );
