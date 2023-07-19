@@ -20,7 +20,7 @@ function FAQAdmin() {
     <main>
       <h1>Liste des Questions/Réponses</h1>
       <select name="faqs" id="">
-        <option value=""> choisir une question</option>
+        <option value="">Choisir une question</option>
         {faqs.map((faq) => (
           <option value={faq.id} key={faq.id}>
             {faq.question}
