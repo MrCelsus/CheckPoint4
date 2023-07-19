@@ -46,10 +46,20 @@ class CarsManager extends AbstractManager {
   }
 
   update(car, carId) {
-    return this.database.query(`update ${this.table} set ? where id = ?`, [
-      car,
-      carId,
-    ]);
+    return this.database.query(
+      `update ${this.table} set model_id = ?, fiscal_power= ?, motor_power = ?, kilometers = ? ,description = ?, external_id = ?, interior_id = ?, fuel_id = ? where id = ?`,
+      [
+        car.modelId,
+        car.fiscalPower,
+        car.motorPower,
+        car.kilometers,
+        car.description,
+        car.externalId,
+        car.interiorId,
+        car.fuelId,
+        carId,
+      ]
+    );
   }
 }
 
