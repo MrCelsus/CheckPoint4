@@ -33,9 +33,7 @@ const updateData = (url, body) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+  }).catch((err) => console.error(err));
 };
 
 const deleteData = (url) => {
