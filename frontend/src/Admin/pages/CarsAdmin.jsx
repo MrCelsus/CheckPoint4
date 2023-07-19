@@ -3,18 +3,30 @@ import connexion from "../../services/connexion";
 
 const carModel = {
   id: null,
-  modelId: "",
-  fuelId: "",
-  fiscalPower: "",
-  motorPower: "",
+  brand_id: "",
+  model_id: "",
+  fuel_id: "",
+  fiscal_power: "",
+  motor_power: "",
   kilometers: "",
-  externalId: "",
-  interiorId: "",
+  external_id: "",
+  interior_id: "",
   description: "",
   price: "",
-  src1: "",
-  src2: "",
-  src3: "",
+  images: [
+    {
+      src: "",
+      image_id: null,
+    },
+    {
+      src: "",
+      image_id: null,
+    },
+    {
+      src: "",
+      image_id: null,
+    },
+  ],
 };
 
 function CarsAdmin() {
@@ -48,12 +60,12 @@ function CarsAdmin() {
     }
   };
 
-  const getModels = async (event) => {
-    if (event) {
+  const getModels = async () => {
+    let url = `/models`;
+    if (car.brand_id) {
+      url += `?brand=${car.brand_id}`;
       try {
-        const modelsData = await connexion.get(
-          `/models?brand=${event.target.value}`
-        );
+        const modelsData = await connexion.get(url);
         if (modelsData) {
           setModels(modelsData);
         }
@@ -132,6 +144,14 @@ function CarsAdmin() {
     }
   };
 
+  const updateCarState = (id) => {
+    if (id === "") {
+      setCar(carModel);
+    } else {
+      setCar(cars.find((theCar) => theCar.id === +id));
+    }
+  };
+
   useEffect(() => {
     getCars();
     getBrands();
@@ -139,24 +159,28 @@ function CarsAdmin() {
     getFuels();
     getExternals();
     getInteriors();
-  }, []);
-  console.info(cars);
+  }, [car.brand_id]);
   return (
     <main>
       <h1>Liste des voitures </h1>
-      <select name="cars" id="cars">
+      <select
+        name="cars"
+        id="cars"
+        onChange={(event) => updateCarState(event.target.value)}
+      >
         <option value="">Rafraîchir</option>
         {cars.map((oneCar) => (
           <option value={oneCar.id} key={oneCar.id}>
-            {oneCar.brand} {oneCar.model} {oneCar.price}€
+            {oneCar.brand} {oneCar.model} / {oneCar.price}€
           </option>
         ))}
       </select>
       <form onSubmit={(event) => postCar(event)}>
         <select
-          name="brandId"
+          name="brand_id"
           id="brand"
-          onChange={(event) => getModels(event)}
+          onChange={(event) => handleCar(event)}
+          value={car.brand_id}
         >
           <option value="">Marque de la voiture</option>
           {brands.map((brand) => (
@@ -164,10 +188,10 @@ function CarsAdmin() {
           ))}
         </select>
         <select
-          name="modelId"
+          name="model_id"
           id="modelId"
           onChange={(e) => handleCar(e)}
-          value={car.modelId}
+          value={car.model_id}
         >
           <option value="">Modèle de la voiture</option>
           {models.map((model) => (
@@ -176,7 +200,7 @@ function CarsAdmin() {
             </option>
           ))}
         </select>
-        <label htmlFor="fiscalPower">
+        <label htmlFor="fiscal_power">
           Puissance fiscale du véhicule :
           <input
             type="number"
@@ -186,7 +210,7 @@ function CarsAdmin() {
             max={6}
             required
             onChange={(e) => handleCar(e)}
-            value={car.fiscalPower}
+            value={car.fiscal_power}
           />
           CV
         </label>
@@ -194,21 +218,21 @@ function CarsAdmin() {
           Puissance moteur du véhicule :
           <input
             type="number"
-            name="motorPower"
+            name="motor_power"
             id="motorPower"
             min={0}
             max={110}
             onChange={(e) => handleCar(e)}
-            value={car.motorPower}
+            value={car.motor_power}
             required
           />
           CH
         </label>
         <select
-          name="fuelId"
+          name="fuel_id"
           id="fuelId"
           onChange={(e) => handleCar(e)}
-          value={car.fuelId}
+          value={car.fuel_id}
         >
           <option value="">Type de carburant</option>
           {fuels.map((fuel) => (
@@ -259,10 +283,11 @@ function CarsAdmin() {
           />
         </label>
         <select
-          name="externalId"
+          name="external_id"
           id="externalId"
           onChange={(e) => handleCar(e)}
-          value={car.externalId}
+          value={car.external_id}
+          required
         >
           <option value="">Etat extérieur de la voiture </option>
           {externals.map((ext) => (
@@ -272,10 +297,11 @@ function CarsAdmin() {
           ))}
         </select>
         <select
-          name="interiorId"
+          name="interior_id"
           id="interiorId"
           onChange={(e) => handleCar(e)}
-          value={car.interiorId}
+          value={car.interior_id}
+          required
         >
           <option value="">Etat intérieur de la voiture</option>
           {interiors.map((int) => (
@@ -288,33 +314,33 @@ function CarsAdmin() {
           1ère Image :
           <input
             type="text"
-            name="src1"
+            name="images[0].src"
             id="src1"
             required
             onChange={(e) => handleCar(e)}
-            value={car.src1}
+            value={car.images[0].src}
           />
         </label>
         <label htmlFor="src2">
           2ème Image :
           <input
             type="text"
-            name="src2"
+            name="images[1].src"
             id="src2"
             required
             onChange={(e) => handleCar(e)}
-            value={car.src2}
+            value={car.images[1].src}
           />
         </label>
         <label htmlFor="src3">
           3ème Image :
           <input
             type="text"
-            name="src3"
+            name="images[2].src"
             id="src3"
             required
             onChange={(e) => handleCar(e)}
-            value={car.src3}
+            value={car.images[2].src}
           />
         </label>
         {!car.id && <button type="submit">Ajouter</button>}
