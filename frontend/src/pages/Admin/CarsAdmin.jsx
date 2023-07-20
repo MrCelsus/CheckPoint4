@@ -168,48 +168,68 @@ function CarsAdmin() {
   }, [car.brand_id]);
 
   return (
-    <main>
-      <h1>Liste des voitures </h1>
-      <select
-        name="cars"
-        id="cars"
-        onChange={(event) => updateCarState(event.target.value)}
-      >
-        <option value="">Rafraîchir</option>
-        {cars.map((oneCar) => (
-          <option value={oneCar.id} key={oneCar.id}>
-            {oneCar.brand} {oneCar.model} / {oneCar.price}€
-          </option>
-        ))}
-      </select>
-      <form onSubmit={(event) => postCar(event)}>
+    <main className="cars-admin">
+      <div className="cars-list">
+        <h1 className="label-title">Liste des voitures</h1>
         <select
+          className="label-title"
+          name="cars"
+          id="cars"
+          onChange={(event) => updateCarState(event.target.value)}
+        >
+          <option className="option-list" value="">
+            Rafraîchir
+          </option>
+          {cars.map((oneCar) => (
+            <option className="option-list" value={oneCar.id} key={oneCar.id}>
+              {oneCar.brand} {oneCar.model} / {oneCar.price}€
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <form className="form-container" onSubmit={(event) => postCar(event)}>
+        {car.id ? (
+          <h1 className="label-title">Veuillez modifier votre voiture :</h1>
+        ) : (
+          <h1 className="label-title">Entrez une nouvelle voiture</h1>
+        )}
+        <select
+          className="label-title"
           name="brand_id"
           onChange={(event) => handleCar(event)}
           value={car.brand_id}
           required
         >
-          <option value="">Marque de la voiture</option>
+          <option className="option-list" value="">
+            Marque de la voiture
+          </option>
           {brands.map((brand) => (
-            <option value={brand.id}>{brand.brand} </option>
+            <option className="option-list" value={brand.id}>
+              {brand.brand}
+            </option>
           ))}
         </select>
         <select
+          className="label-title"
           name="model_id"
           onChange={(e) => handleCar(e)}
           value={car.model_id}
           required
         >
-          <option value="">Modèle de la voiture</option>
+          <option className="option-list" value="">
+            Modèle de la voiture
+          </option>
           {models.map((model) => (
-            <option value={model.id} key={model.id}>
+            <option className="option-list" value={model.id} key={model.id}>
               {model.model}
             </option>
           ))}
         </select>
-        <label htmlFor="fiscal_power">
+        <label className="label-title" htmlFor="fiscal_power">
           Puissance fiscale du véhicule :
           <input
+            className="basic-input"
             type="number"
             name="fiscal_power"
             min={0}
@@ -220,9 +240,10 @@ function CarsAdmin() {
           />
           CV
         </label>
-        <label htmlFor="motorPower">
+        <label className="label-title" htmlFor="motorPower">
           Puissance moteur du véhicule :
           <input
+            className="basic-input"
             type="number"
             name="motor_power"
             id="motorPower"
@@ -235,21 +256,25 @@ function CarsAdmin() {
           CH
         </label>
         <select
+          className="label-title"
           name="fuel_id"
           onChange={(e) => handleCar(e)}
           value={car.fuel_id}
           required
         >
-          <option value="">Type de carburant</option>
+          <option className="option-list" value="">
+            Type de carburant
+          </option>
           {fuels.map((fuel) => (
-            <option value={fuel.id} key={fuel.id}>
+            <option className="option-list" value={fuel.id} key={fuel.id}>
               {fuel.label}
             </option>
           ))}
         </select>
-        <label htmlFor="kilometers">
+        <label className="label-title" htmlFor="kilometers">
           Kilométrage de la voiture :
           <input
+            className="basic-input"
             type="number"
             name="kilometers"
             id="kilometers"
@@ -260,9 +285,10 @@ function CarsAdmin() {
           />
           Km
         </label>
-        <label htmlFor="price">
+        <label className="label-title" htmlFor="price">
           Le prix :
           <input
+            className="basic-input"
             type="number"
             name="price"
             id="price"
@@ -273,7 +299,7 @@ function CarsAdmin() {
           />
           €
         </label>
-        <label htmlFor="description">
+        <label className="label-title" htmlFor="description">
           Description :
           <textarea
             name="description"
@@ -289,36 +315,43 @@ function CarsAdmin() {
           />
         </label>
         <select
+          className="label-title"
           name="external_id"
           id="externalId"
           onChange={(e) => handleCar(e)}
           value={car.external_id}
           required
         >
-          <option value="">Etat extérieur de la voiture </option>
+          <option className="option-list" value="">
+            Etat extérieur
+          </option>
           {externals.map((ext) => (
-            <option value={ext.id} key={ext.id}>
+            <option className="option-list" value={ext.id} key={ext.id}>
               {ext.label}
             </option>
           ))}
         </select>
         <select
+          className="label-title"
           name="interior_id"
           id="interiorId"
           onChange={(e) => handleCar(e)}
           value={car.interior_id}
           required
         >
-          <option value="">Etat intérieur de la voiture</option>
+          <option className="option-list" value="">
+            Etat intérieur
+          </option>
           {interiors.map((int) => (
-            <option value={int.id} key={int.id}>
+            <option className="option-list" value={int.id} key={int.id}>
               {int.label}
             </option>
           ))}
         </select>
-        <label htmlFor="src1">
+        <label className="label-title" htmlFor="src1">
           1ère Image :
           <input
+            className="basic-input"
             type="text"
             name="image0"
             required
@@ -326,9 +359,10 @@ function CarsAdmin() {
             value={car.images[0].src}
           />
         </label>
-        <label htmlFor="src2">
+        <label className="label-title" htmlFor="src2">
           2ème Image :
           <input
+            className="basic-input"
             type="text"
             name="image1"
             required
@@ -336,9 +370,10 @@ function CarsAdmin() {
             value={car.images[1].src}
           />
         </label>
-        <label htmlFor="src3">
+        <label className="label-title" htmlFor="src3">
           3ème Image :
           <input
+            className="basic-input"
             type="text"
             name="image2"
             required
@@ -346,14 +381,26 @@ function CarsAdmin() {
             value={car.images[2].src}
           />
         </label>
-        {!car.id && <button type="submit">Ajouter</button>}
+        {!car.id && (
+          <button className="main-btn" type="submit">
+            Ajouter
+          </button>
+        )}
       </form>
       {car.id && (
         <>
-          <button type="button" onClick={(e) => deleteCar(e)}>
+          <button
+            type="button"
+            className="second-btn"
+            onClick={(e) => deleteCar(e)}
+          >
             Supprimer
           </button>
-          <button type="button" onClick={(e) => updateCar(e)}>
+          <button
+            type="button"
+            className="second-btn"
+            onClick={(e) => updateCar(e)}
+          >
             Modifier
           </button>
         </>
