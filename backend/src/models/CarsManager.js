@@ -13,7 +13,7 @@ class CarsManager extends AbstractManager {
 
   find(id) {
     return this.database.query(
-      `select c.id, c.fiscal_power, c.motor_power, c.kilometers, c.description, c.price, b.brand, m.model, c.model_id, m.brand_id, c.external_id, c.interior_id, c.fuel_id, JSON_ARRAYAGG(JSON_OBJECT('image_id', ci.id, 'src', ci.src)) as images from ${this.table} c inner join car_models m on c.model_id=m.id inner join brands b on m.brand_id=b.id inner join externals ext on c.external_id=ext.id inner join interiors on c.interior_id=interiors.id inner join fuels f on c.fuel_id=f.id inner join car_images ci on c.id=ci.car_id where c.id = ?`,
+      `select c.id, c.fiscal_power, c.motor_power, c.kilometers, c.description, c.price, b.brand, m.model, c.model_id, m.brand_id, c.external_id, interiors.label as int_lab, ext.label as ext_label, f.label as fuel_label, c.interior_id, c.fuel_id, JSON_ARRAYAGG(JSON_OBJECT('image_id', ci.id, 'src', ci.src)) as images from ${this.table} c inner join car_models m on c.model_id=m.id inner join brands b on m.brand_id=b.id inner join externals ext on c.external_id=ext.id inner join interiors on c.interior_id=interiors.id inner join fuels f on c.fuel_id=f.id inner join car_images ci on c.id=ci.car_id where c.id = ?`,
       [id]
     );
   }

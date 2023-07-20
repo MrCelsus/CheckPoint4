@@ -1,0 +1,59 @@
+.picture-car {
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.car-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    margin: 0;
+  }
+
+  .description {
+    width: 100%;
+    margin: 0 5%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .car-container {
+    display: flex;
+    justify-content: center;
+
+    aside {
+      margin-top: 10%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .mySwiper {
+    width: 45%;
+    margin-top: 10%;
+  }
+
+  .picture-car {
+    width: 100%;
+  }
+
+  .car-details {
+    gap: 0;
+
+    figure {
+      width: 45%;
+    }
+  }
+}
