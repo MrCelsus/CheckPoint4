@@ -50,15 +50,11 @@ function OneCar() {
   return (
     <main className="car-container">
       <Swiper navigation modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>
-          <img className="picture-car" src={car.images[0].src} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className="picture-car" src={car.images[1].src} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className="picture-car" src={car.images[2].src} alt="" />
-        </SwiperSlide>
+        {car.images.map((image) => (
+          <SwiperSlide>
+            <img className="picture-car" src={image.src} alt={image.src} />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <aside>
         <h1>
