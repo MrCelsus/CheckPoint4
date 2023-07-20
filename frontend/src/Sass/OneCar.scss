@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-h1 {
+.car-title {
   text-align: center;
 }
 
@@ -32,6 +32,7 @@ h1 {
   .car-container {
     display: flex;
     justify-content: center;
+    height: 100vh;
 
     aside {
       margin-top: 10%;

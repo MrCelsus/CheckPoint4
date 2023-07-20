@@ -57,7 +57,7 @@ function OneCar() {
         ))}
       </Swiper>
       <aside>
-        <h1>
+        <h1 className="car-title">
           {car.brand} {car.model}
         </h1>
         <article className="car-details">
