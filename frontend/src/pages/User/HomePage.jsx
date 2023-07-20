@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import connexion from "../../services/connexion";
 import CarsCard from "../../components/CarsCard";
 
@@ -19,13 +18,13 @@ function HomePage() {
     getCars();
   }, []);
   return (
-    <main>
-      <h1>Liste des voitures</h1>
-      {cars.map((car) => (
-        <Link to={`/cars/${car.id}`}>
+    <main className="home">
+      <h1>Nos annonces :</h1>
+      <article className="list-card">
+        {cars.map((car) => (
           <CarsCard car={car} />
-        </Link>
-      ))}
+        ))}
+      </article>
     </main>
   );
 }
