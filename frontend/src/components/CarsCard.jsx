@@ -5,7 +5,7 @@ function CarsCard({ car }) {
   return (
     <section className="car-card">
       <Link to={`cars/${car.id}`}>
-        <img src={car.images[0].src} alt="" />
+        <img className="car-picture" src={car.images[0].src} alt="" />
         <figure>
           <h2>
             {car.brand} {car.model}
