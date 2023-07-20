@@ -11,10 +11,10 @@ function SideBar() {
   return (
     <aside className="sidebar">
       <h1>Welcome Back Admin</h1>
-      <Link to="/admin/" className="home-cms">
+      <Link to="/admin" className="home-cms">
         <BsReverseLayoutTextSidebarReverse size={20} /> Accueil CMS
       </Link>
-      <Link to="/admin/cars">
+      <Link to="/admin">
         <FaCar size={20} /> Liste des voitures
       </Link>
       <Link to="/admin/faq">
