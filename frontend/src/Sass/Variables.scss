@@ -4,6 +4,132 @@ $secondary-color: #a93f55;
 $tertiary-color: #f2545b;
 $white: #f3f7f0;
 $black: #1f1f1f;
+$background-black: #4f4f4f;
+$background-light-grey: #fbf8f8;
 
 //   FONTS
 $font-family: "Poppins", sans-serif;
+
+@mixin form-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@mixin basic-input($input-color) {
+  border: none;
+  background: #fbfbfb;
+  color: $background-black;
+  margin-top: 0px;
+  width: 330px;
+  border-bottom: 5px solid;
+  border-color: $input-color;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+  transition: ease 0.5s;
+
+  &:hover {
+    @include basic-input-hover($input-color);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin basic-input-hover($input-color-hover) {
+  border-bottom: 8px solid;
+  border-color: $input-color-hover;
+  height: 50px;
+  width: 330px;
+  transition: ease 0.5s;
+}
+
+@mixin form-container-label {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 330px;
+  width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@mixin mainTitle($color) {
+  color: $color;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 2.8rem;
+}
+
+@mixin labelTitle($color) {
+  color: $color;
+  text-align: left;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+@mixin label-title {
+  text-align: center;
+  display: flex;
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  font-size: 1.3rem;
+}
+
+@mixin mainBtn($color) {
+  margin: 1.5rem auto;
+  padding: 1.2rem;
+  border-radius: 2.5rem;
+  color: $color;
+  border: 1px solid;
+  border-color: $color;
+  background: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+@mixin mainBtnHover($color-hover) {
+  transition: all 0.3s ease;
+  border: 1px solid $color-hover;
+  background-color: $color-hover;
+  color: $color-hover;
+  line-height: 1;
+}
+
+@mixin option-list($option-color) {
+  border: none;
+  background: #fbfbfb;
+  color: $background-black;
+  margin-top: 0px;
+  width: 330px;
+  border-bottom: 5px solid;
+  border-color: $option-color;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+}
