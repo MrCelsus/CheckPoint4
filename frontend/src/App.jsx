@@ -7,10 +7,11 @@ import CarsAdmin from "./pages/Admin/CarsAdmin";
 import BrandsAdmin from "./pages/Admin/BrandsAdmin";
 import ProfilsAdmin from "./pages/Admin/ProfilsAdmin";
 import FAQAdmin from "./pages/Admin/FAQAdmin";
-// Users
+// User
 import UserLayout from "./pages/User/UserLayout";
 import HomePage from "./pages/User/HomePage";
 import OneCar from "./pages/User/OneCar";
+import FAQPage from "./pages/User/FAQPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<UserLayout />}>
             <Route path="" element={<HomePage />} />
             <Route path="cars/:id" element={<OneCar />} />
+            <Route path="faq" element={<FAQPage />} />
           </Route>
           {/* Routes Admin */}
           <Route path="/admin/" element={<AdminLayout />}>

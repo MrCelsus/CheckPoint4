@@ -1,0 +1,30 @@
+.faq-page {
+  height: 100vh;
+}
+
+section {
+  margin: 2% 5%;
+
+  .question {
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    gap: 5%;
+    justify-content: flex-start;
+    text-align: center;
+    background-color: $main-color;
+    color: $white;
+  }
+
+  .answer {
+    margin: 0 5%;
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .question {
+    height: 3rem;
+  }
+}
