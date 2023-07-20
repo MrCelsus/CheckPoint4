@@ -5,7 +5,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import {
   BsQuestionCircle,
   BsReverseLayoutTextSidebarReverse,
-  BsDownload,
 } from "react-icons/bs";
 
 import Logo from "../assets/Logo_Blanc_Bleu.jpg";
@@ -37,12 +36,6 @@ function NavBar() {
           <h4>F.A.Q</h4>
           <span>
             <BsQuestionCircle size={25} />
-          </span>
-        </Link>
-        <Link to="/signin">
-          <h4>Log Out</h4>
-          <span>
-            <BsDownload size={25} style={{ rotate: "-90deg" }} />
           </span>
         </Link>
         <Link to="/admin">
