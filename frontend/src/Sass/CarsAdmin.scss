@@ -1,0 +1,65 @@
+@import "./Variables.scss";
+
+.form-container {
+  @include form-container;
+
+  textarea {
+    resize: none;
+  }
+}
+
+.cars-list {
+  margin-bottom: 10%;
+}
+
+.main-titel {
+  @include mainTitle($main-color);
+}
+
+.label-title {
+  @include labelTitle($main-color);
+}
+
+.main-btn {
+  @include mainBtn($main-color);
+}
+
+.second-btn {
+  @include mainBtn($secondary-color);
+}
+
+button.main-btn:hover {
+  @include mainBtnHover($secondary-color);
+}
+
+.label-title {
+  @include label-title;
+}
+
+.form-container label {
+  @include form-container-label;
+}
+
+.basic-input {
+  @include basic-input($main-color);
+}
+
+.basic-input:hover {
+  @include basic-input-hover($main-color);
+}
+
+.option-list {
+  @include option-list($main-color);
+}
+
+@media screen and (min-width: 768px) {
+  .cars-admin {
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .cars-list {
+    margin-bottom: 5%;
+  }
+}
