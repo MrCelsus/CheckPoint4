@@ -10,6 +10,7 @@ import FAQAdmin from "./pages/Admin/FAQAdmin";
 // Users
 import UserLayout from "./pages/User/UserLayout";
 import HomePage from "./pages/User/HomePage";
+import OneCar from "./pages/User/OneCar";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           {/* Routes User */}
           <Route path="/" element={<UserLayout />}>
             <Route path="" element={<HomePage />} />
+            <Route path="cars/:id" element={<OneCar />} />
           </Route>
           {/* Routes Admin */}
           <Route path="/admin/" element={<AdminLayout />}>
