@@ -70,22 +70,26 @@ function FAQAdmin() {
   }, []);
   return (
     <main>
-      <h1>Liste des Questions/Réponses</h1>
+      <h1 className="label-title">Liste des Questions/Réponses</h1>
       <select
+        className="label-title"
         name="faqs"
         onChange={(event) => updateFaqState(event.target.value)}
       >
-        <option value="">Choisir une question</option>
+        <option className="option-list" value="">
+          Choisir une question
+        </option>
         {faqs.map((fq) => (
-          <option value={fq.id} key={fq.id}>
+          <option className="option-list" value={fq.id} key={fq.id}>
             {fq.question}
           </option>
         ))}
       </select>
-      <form onSubmit={(event) => postFaq(event)}>
-        <label htmlFor="question">
+      <form className="form-container" onSubmit={(event) => postFaq(event)}>
+        <label className="label-title" htmlFor="question">
           Question :
           <textarea
+            className="basic-input"
             type="text"
             name="question"
             cols={40}
@@ -96,9 +100,10 @@ function FAQAdmin() {
             required
           />
         </label>
-        <label htmlFor="answer">
+        <label className="label-title" htmlFor="answer">
           Réponse :
           <textarea
+            className="basic-input"
             type="text"
             name="answer"
             cols={40}
@@ -109,18 +114,30 @@ function FAQAdmin() {
             required
           />
         </label>
-        {!faq.id && <button type="submit">Ajouter</button>}
+        {!faq.id && (
+          <button className="main-btn" type="submit">
+            Ajouter
+          </button>
+        )}
+        {faq.id && (
+          <>
+            <button
+              type="button"
+              className="second-btn"
+              onClick={(e) => deleteFaq(e)}
+            >
+              Supprimer
+            </button>
+            <button
+              type="button"
+              className="second-btn"
+              onClick={(e) => updateFaq(e)}
+            >
+              Modifier
+            </button>
+          </>
+        )}
       </form>
-      {faq.id && (
-        <>
-          <button type="button" onClick={(e) => deleteFaq(e)}>
-            Supprimer
-          </button>
-          <button type="button" onClick={(e) => updateFaq(e)}>
-            Modifier
-          </button>
-        </>
-      )}
     </main>
   );
 }
