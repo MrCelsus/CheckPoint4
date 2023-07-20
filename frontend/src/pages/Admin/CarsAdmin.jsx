@@ -386,25 +386,25 @@ function CarsAdmin() {
             Ajouter
           </button>
         )}
+        {car.id && (
+          <>
+            <button
+              type="button"
+              className="second-btn"
+              onClick={(e) => deleteCar(e)}
+            >
+              Supprimer
+            </button>
+            <button
+              type="button"
+              className="second-btn"
+              onClick={(e) => updateCar(e)}
+            >
+              Modifier
+            </button>
+          </>
+        )}
       </form>
-      {car.id && (
-        <>
-          <button
-            type="button"
-            className="second-btn"
-            onClick={(e) => deleteCar(e)}
-          >
-            Supprimer
-          </button>
-          <button
-            type="button"
-            className="second-btn"
-            onClick={(e) => updateCar(e)}
-          >
-            Modifier
-          </button>
-        </>
-      )}
     </main>
   );
 }
