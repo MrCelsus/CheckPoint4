@@ -1,5 +1,9 @@
 @import "./Variables.scss";
+@import "./NavBar.scss";
 
-:root {
+body {
   font-family: $font-family;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
